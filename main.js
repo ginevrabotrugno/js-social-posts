@@ -108,11 +108,24 @@ posts.forEach(element => {
 const likeButton = document.querySelectorAll('.js-like-button');
 console.log(likeButton);
 
+// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+const likedPosts = [];
+
 // gestione interazione al click su ogni bottone
 likeButton.forEach(button => {
     button.addEventListener('click', 
         function (event) {
             event.preventDefault();
+            const postId = button.getAttribute('data-postid');
+
+            if (!likedPosts.includes(postId)) {
+                likedPosts.push(postId);
+                const likeCounter = document.getElementById(`like-counter-${postId}`);
+                let likes = parseInt(likeCounter.textContent);
+                likes++;
+                likeCounter.textContent = likes;
+                button.classList.add('like-button--liked');
+            }
         }
     );
 });
@@ -125,5 +138,5 @@ likeButton.forEach(button => {
 
 
 
-// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+
 
