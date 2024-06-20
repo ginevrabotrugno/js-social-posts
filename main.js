@@ -109,6 +109,13 @@ const likeButton = document.getElementsByClassName('js-like-button');
 console.log(likeButton);
 
 // gestione interazione al click su ogni bottone
+likeButton.forEach(button => {
+    button.addEventListener('click', 
+        function (event) {
+            event.preventDefault();
+        }
+    );
+});
 
 
 
